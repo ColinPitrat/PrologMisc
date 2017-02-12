@@ -39,4 +39,8 @@ main:-
   write(Last), nl,
   mylast2([a,b,c,d,e,f], Last2),
   write(Last2), nl,
+  write(' ===== ex6_6 ===== '), nl,
+  consult('ex6_6.pl'),
+  zebra(Z), nl,
+  write(Z), nl,
   halt.
