@@ -18,3 +18,14 @@ myaccreverse([H | T], Acc, Lrev):-
 
 myreverse(L, Lrev):-
   myaccreverse(L, [], Lrev).
+
+myaccset([], S, S).
+myaccset([H | T], Acc, S):-
+  member(H, Acc),
+  myaccset(T, Acc, S).
+myaccset([H | T], Acc, S):-
+  append(Acc, [H], NewAcc),
+  myaccset(T, NewAcc, S).
+
+myset([H | T], S):-
+  myaccset(T, [H], S).
