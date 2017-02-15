@@ -1,4 +1,4 @@
-NAME=AdditionMystere
+NAME=SendMoreMoney
 
 all: build
 
