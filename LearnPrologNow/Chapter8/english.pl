@@ -1,16 +1,16 @@
-s(_, N, G, P)  -->  np(subject, N, G, P),prepositional(_, _, _, _),vp(_, N, G, P). 
+s(_, N, G, P)  -->  np(subject, N, G, P),prepositional(_, _, _, _),vp(_, N, G, P).
 
 np(S, N, G, P)  -->  det(S, N, G, P),adjectives(S, N, G, P, []),noun(S, N, G, P).
 np(S, N, G, P)  -->  pronoun(S, N, G, P).
 
 adjectives(_, _, _, _, _) --> [].
-adjectives(S, N, G, P, L) --> { adjective(S, N, G, P, [A], []), \+member(A, L)}, [A], adjectives(S, N, G, P, [A | L]). 
+adjectives(S, N, G, P, L) --> { adjective(S, N, G, P, [A], []), \+member(A, L)}, [A], adjectives(S, N, G, P, [A | L]).
 
 prepositional(_, _, _, _) --> [].
 prepositional(S, N, G, P) --> preposition(S, N, G, P), np(object, N, G, P).
 
-vp(_, N, G, P)  -->  verb(_, N, G, P),np(object, _, _, _),prepositional(_, _, _, _). 
-vp(_, N, G, P)  -->  verb(_, N, G, P). 
+vp(_, N, G, P)  -->  verb(_, N, G, P),np(object, _, _, _),prepositional(_, _, _, _).
+vp(_, N, G, P)  -->  verb(_, N, G, P).
 
 det(S, N, G, P) --> [Word], {lex(Word, det(S, N, G, P))}.
 noun(S, N, G, P) --> [Word], {lex(Word, noun(S, N, G, P))}.
