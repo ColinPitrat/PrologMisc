@@ -1,0 +1,26 @@
+:- initialization(main).
+
+main:-
+  write(' ==== termtype ===='), nl,
+  consult('assert.pl'),
+  consult('termtype.pl'),
+  assert(termtype(Vincent, variable), 'Vincent - variable'),
+  findall(X, termtype(mia, X), Y),
+  assert(Y == ['atom',constant,simple_term,term], 'mia - X'),
+  findall(X2, termtype(dead(zed), X2), Y2),
+  assert(Y2 == [term], 'dead(zed) - X2'),
+  write(' ==== groundterm ===='), nl,
+  consult('groundterm.pl'),
+  write('Should be OK:'), nl,
+  assert(groundterm(zozo), 'groundterm(zozo)'),
+  assert(groundterm(toto(titi)), 'groundterm(toto(titi))'),
+  assert(groundterm(toto(titi,tutu)), 'groundterm(toto(titi,tutu))'),
+  assert(groundterm([]), 'groundterm([])'),
+  assert(groundterm([1,2,3]), 'groundterm([1,2,3])'),
+  write('Should be KO:'), nl,
+  assert(groundterm(A), 'groundterm(A)'),
+  assert(groundterm(toto(B)), 'groundterm(toto(B))'),
+  assert(groundterm(toto(titi,B)), 'groundterm(toto(titi,B))'),
+  assert(groundterm([A,2,3]), 'groundterm([A,2,3])'),
+  assert(groundterm([1,2,A]), 'groundterm([1,2,A])'),
+  halt.
